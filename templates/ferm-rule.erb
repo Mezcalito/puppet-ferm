@@ -1,0 +1,12 @@
+##
+## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
+##
+
+domain (ip ip6) {
+	table <%= table %> {
+		chain <%= chain %> {
+			<%= rule %><% unless notarule -%>;<% end -%>
+
+		}
+	}
+}
