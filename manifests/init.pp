@@ -1,5 +1,5 @@
 class ferm {
-    define rule($table="filter", $chain="INPUT", $rule, $description="", $prio="00", $notarule=false) {
+    define rule($host = false, $table="filter", $chain="INPUT", $rule, $description="", $prio="00", $notarule=false) {
         file {
             "/etc/ferm/rules.d/${prio}_${name}":
                 ensure  => present,
