@@ -7,6 +7,6 @@ define ferm::nagios($nagios_host=false, $table="filter", $chain="INPUT", $rules,
                 group   => root,
                 mode    => 0400,
                 content => template("ferm/nagios.erb"),
-                notify  => Exec["ferm restart"],
+                notify  => Service["ferm"];
         }
     }
