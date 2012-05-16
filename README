@@ -36,18 +36,6 @@ Variables used :
 	$prio="00", 
 	$notarule=false
 
-ferm::nagios
-------------
-
-Add nagios specific rules
-
-Variables used :
-	$nagios_host=false, 
-	$table="filter", 
-	$chain="INPUT", 
-	$rules, 
-	$prio="00"
-
 
 Licensing
 =========
