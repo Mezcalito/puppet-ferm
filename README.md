@@ -28,13 +28,14 @@ ferm::rule
 Add a rule to the ferm rules.d directory
 
 Variables used :
-	$host = false, 
-	$table="filter", 
-	$chain="INPUT", 
-	$rule, 
-	$description="", 
-	$prio="00", 
-	$notarule=false
+
+* $host = false,
+* $table="filter",
+* $chain="INPUT",
+* $rule,
+* $description="",
+* $prio="00",
+* $notarule=false
 
 ferm::hook
 ----------
