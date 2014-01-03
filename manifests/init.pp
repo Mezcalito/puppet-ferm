@@ -31,7 +31,13 @@ class ferm {
 			require => Package["ferm"],
 			notify  => Exec["refresh_ferm"];
 		"/etc/ferm/ferm.conf":
-			source  => "puppet:///modules/ferm/ferm.conf",
+			source => [
+			"puppet:///modules/site-ferm/${::fqdn}/ferm.conf",
+			"puppet:///modules/site-ferm/${::operatingsystem}/ferm.conf",
+			"puppet:///modules/site-ferm/ferm.conf",
+			"puppet:///modules/ferm/${::operatingsystem}/ferm.conf",
+			"puppet:///modules/ferm/ferm.conf"
+			],
 			owner   => root,
 			group   => root,
 			require => Package["ferm"],
