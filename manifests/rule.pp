@@ -5,6 +5,7 @@
 	$chain="INPUT",
 	$rules,
 	$description="",
+	$domain = "ip",
 	$prio="00",
 	$notarule=false
  ) 
