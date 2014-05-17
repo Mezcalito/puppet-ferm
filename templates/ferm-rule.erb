@@ -3,19 +3,19 @@
 ## <%= description %>
 ##
 
-table <%= @table %> {
-	chain <%= @chain %> {
-		<% if @host != false %>saddr <%= @host %> {
-<% end -%>
-<% if (defined? @rules) %>
-<% if (@rules.is_a? String) %>
-			<%= @rules %>;
+domain (<%= @domain %>) {
+    table <%= @table %> {
+        chain <%= @chain %> {
+            <% if @host != false %>saddr <%= @host %> {<% end -%>
+<% if (defined? @rules) %><% if (@rules.is_a? String) %>
+                <%= @rules %>;
 <% elsif (@rules.is_a? Array) -%>
-<% @rules.each do |ns| %>			<%= ns %>;
+<% @rules.each do |ns| %>                <%= ns %>;
 <% end -%>
 <% end -%>
 <% end -%>
-		<% if @host != false %>}<% end -%>
+            <% if @host != false %>}<% end -%>
 
-	}
+        }
+    }
 }

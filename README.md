@@ -28,13 +28,14 @@ ferm::rule
 Add a rule to the ferm rules.d directory
 
 Variables used :
-	$host = false, 
-	$table="filter", 
-	$chain="INPUT", 
-	$rule, 
-	$description="", 
-	$prio="00", 
-	$notarule=false
+
+* $host = false,
+* $table="filter",
+* $chain="INPUT",
+* $rule,
+* $description="",
+* $prio="00",
+* $notarule=false
 
 ferm::hook
 ----------
@@ -47,6 +48,35 @@ Example:
         description => 'Module nf_conntrack_ftp pour proftpd',
         content_hook => 'modprobe nf_conntrack_ftp'
     }
+
+Examples
+========
+
+Allow mDNS/Avahi on the local network
+
+    ferm::rule { "allow_mdns":
+        host        => false,
+        table       => "filter",
+        chain       => "INPUT",
+        rules       => "saddr 192.168.0.0/24 proto (tcp udp) dport mdns ACCEPT",
+        description => "Allow mdns/avahi",
+        prio        => "00",
+        notarule    => false
+    }
+
+Allow incoming HTTP request on IPv4 and IPv6:
+
+    ferm::rule { "allow_http":
+        host        => false,
+        table       => "filter",
+        domain      => "ip ip6",
+        chain       => "INPUT",
+        rules       => "proto tcp dport http ACCEPT",
+        description => "Allow HTTP",
+        prio        => "00",
+        notarule    => false
+    }
+
 
 Licensing
 =========

@@ -14,6 +14,15 @@ class ferm {
 			recurse => true,
 			notify  => Exec["refresh_ferm"],
 			require => Package["ferm"];
+		"/etc/ferm/macros.d":
+			ensure => directory,
+			purge   => true,
+			owner   => root,
+			group   => root,
+			force   => true,
+			recurse => true,
+			notify  => Exec["refresh_ferm"],
+			require => Package["ferm"];
 		"/etc/ferm":
 			ensure  => directory,
 			owner   => root,
