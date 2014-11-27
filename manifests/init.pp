@@ -1,5 +1,5 @@
 class ferm (
-  $defaut_allow_ssh = true,
+  $default_allow_ssh = true,
   $cache = true,
   $fast = true,
 ){
