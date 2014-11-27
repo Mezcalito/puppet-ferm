@@ -15,7 +15,7 @@ class ferm (
     group   => root,
     force   => true,
     recurse => true,
-    notify  => Service["ferm"],
+    notify  => Exec["refresh_ferm"],
     require => Package["ferm"],
   }
 
@@ -31,7 +31,7 @@ class ferm (
     owner   => root,
     group   => root,
     require => Package["ferm"],
-    notify  => Service["ferm"],
+    notify  => Exec["refresh_ferm"],
   }
 
 	file { "/etc/ferm/ferm.conf":
@@ -40,13 +40,13 @@ class ferm (
     group   => root,
     mode    => 0400,
     require => Package["ferm"],
-    notify  => Service["ferm"];
+    notify  => Exec["refresh_ferm"],
 	}
 
-  service { 'ferm':
-    ensure => running,
-    enable => true,
-    require => Package["ferm"]
+  exec { "refresh_ferm":
+    command => "/etc/init.d/ferm restart",
+    require  => Package["ferm"],
+    refreshonly => true
   }
-
+  
 }
