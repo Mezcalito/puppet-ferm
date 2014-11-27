@@ -6,11 +6,7 @@ class ferm (
 
 	package { 'ferm':
     ensure => installed,
-	} ->
-  service { 'ferm':
-    ensure => running,
-    enable => true,
-  }
+	}
 
   file { "/etc/ferm/rules.d":
     ensure => directory,
@@ -44,7 +40,13 @@ class ferm (
     group   => root,
     mode    => 0400,
     require => Package["ferm"],
-    notify  => Serivce["ferm"];
+    notify  => Service["ferm"];
 	}
+
+  service { 'ferm':
+    ensure => running,
+    enable => true,
+    require => Package["ferm"]
+  }
 
 }

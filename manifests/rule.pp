@@ -9,8 +9,6 @@ define ferm::rule(
 	$notarule = false
 ) {
 
-  require ferm
-
 	file { "/etc/ferm/rules.d/${prio}_${name}":
 		ensure  => present,
 		owner   => root,
