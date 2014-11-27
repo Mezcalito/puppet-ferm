@@ -21,9 +21,10 @@ domain (ip ip6) {
             # allow local packet
             interface lo ACCEPT;
 
+<% if @defaut_allow_ssh -%>
             # allow SSH connections
             proto tcp dport ssh ACCEPT;
-
+<% end -%>
         }
 
         chain OUTPUT {
@@ -42,5 +43,3 @@ domain (ip ip6) {
 }
 
 @include 'rules.d/';
-
-# vim:set et:

@@ -1,4 +1,8 @@
-class ferm {
+class ferm (
+  $defaut_allow_ssh = true,
+  $cache = true,
+  $fast = true,
+){
 
 	package { 'ferm':
     ensure => installed,
@@ -27,7 +31,7 @@ class ferm {
   }
 
 	file {	"/etc/default/ferm":
-    source  => "puppet:///modules/ferm/ferm.default",
+    content  => template("ferm/ferm.default.erb"),
     owner   => root,
     group   => root,
     require => Package["ferm"],
@@ -35,7 +39,7 @@ class ferm {
   }
 
 	file { "/etc/ferm/ferm.conf":
-    source  => "puppet:///modules/ferm/ferm.conf",
+    content  => template("ferm/ferm.conf.erb"),
     owner   => root,
     group   => root,
     mode    => 0400,
