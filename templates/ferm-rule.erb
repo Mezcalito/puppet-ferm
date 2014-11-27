@@ -3,13 +3,14 @@
 ## <%= description %>
 ##
 
-table <%= table %> {
-	chain <%= chain %> {
-		<% if host != false %>saddr <%= host %> {
+table <%= @table %> {
+	chain <%= @chain %> {
+<%if @host || @interface -%>
+		<% if @interface %>interface (<%= @interface %>)<% end %><% if @host %>saddr (<%= @host %>)<% end %> {
 <% end -%>
-<% rules.each do |ns| %>			<%= ns %>;
+<% @rules.each do |rule| %>			<%= rule %>;
 <% end -%>
-		<% if host != false %>}<% end -%>
+		<% if @host || @interface %>}<% end -%>
 
 	}
 }
