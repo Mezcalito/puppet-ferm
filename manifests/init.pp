@@ -37,13 +37,6 @@ class ferm {
 			require => Package["ferm"],
 			mode    => 0400,
 			notify  => Exec["refresh_ferm"];
-		"/etc/ferm/conf.d/defs.conf":
-			content => template("ferm/defs.conf.erb"),
-			owner   => root,
-			group   => root,
-			require => Package["ferm"],
-			mode    => 0400,
-			notify  => Exec["refresh_ferm"];
 		}
     
 	exec { "refresh_ferm":
