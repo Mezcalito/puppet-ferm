@@ -1,0 +1,15 @@
+{
+  "name": "mezcalito-ferm",
+  "version": "0.1.0",
+  "author": "mezcalito",
+  "summary": "This puppet module manages ferm and its rules.",
+  "license": "GPL-3.0",
+  "source": "https://github.com/Mezcalito/puppet-ferm.git",
+  "project_page": "https://github.com/Mezcalito/puppet-ferm",
+  "issues_url": "https://github.com/Mezcalito/puppet-ferm/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+  ],
+  "data_provider": null
+}
+
