@@ -9,7 +9,7 @@
 		ensure  => present,
 		owner   => root,
 		group   => root,
-		mode    => 0400,
+		mode    => '0400',
 		content => template("ferm/ferm-macro.erb"),
 		notify  => Exec["refresh_ferm"];
 	}
