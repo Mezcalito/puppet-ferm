@@ -1,12 +1,19 @@
 class ferm {
 
 	package {
-		ferm:			ensure => installed;
-		iptables:		ensure => installed;
+		ferm:		ensure => installed;
+		iptables:	ensure => installed;
 		iptables-ipv6:	ensure => installed;
 	}
 
 	file {
+		"/etc/init.d/ferm":
+			source  => "puppet:///modules/ferm/ferm.init",
+			owner   => 'root',
+			group   => 'root',
+			require => Package["ferm"],
+			mode    => '0755',
+			notify  => Service['ferm'];
 		"/etc/ferm/rules.d":
 			ensure => directory,
 			purge   => true,
@@ -61,6 +68,11 @@ class ferm {
 		command => "/etc/init.d/ferm restart",
 		require  => Package["ferm"],
 		refreshonly => true
+	}
+
+	service { 'ferm':
+		ensure => true,
+		enable => true,
 	}
 }
 # vim:set et:
