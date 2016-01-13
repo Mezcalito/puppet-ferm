@@ -6,13 +6,13 @@
 domain (<%= @domain %>) {
     table <%= @table %> {
         chain <%= @chain %> {
-        <% if host != false %>saddr <%= @host %>{<% end -%>
+        <% if @host != false %>saddr <%= @host %>{<% end -%>
 
         <% rules.each do |rule| %>
             <%= rule %>;
         <% end -%>
 
-        <% if host != false %>}<% end -%>
+        <% if @host != false %>}<% end -%>
         }
     }
 }
