@@ -8,7 +8,7 @@ domain (<%= @domain %>) {
         chain <%= @chain %> {
         <% if @host != false %>saddr <%= @host %>{<% end -%>
 
-        <% @rules.each do |rule| %>
+        <% rules.each do |rule| %>
             <%= @rule %>;
         <% end -%>
 
