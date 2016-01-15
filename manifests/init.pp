@@ -71,7 +71,6 @@ class ferm {
 	}
 
 	service { 'ferm':
-		ensure => true,
 		enable => true,
 	}
 }
