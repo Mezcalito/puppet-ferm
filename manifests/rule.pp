@@ -1,15 +1,15 @@
- define ferm::rule
- (
-	$host = false,
-	$table="filter",
-	$chain="INPUT",
+define ferm::rule
+(
+	$host        = false,
+	$table       = "filter",
+	$chain       = "INPUT",
 	$rules,
-	$description="",
-	$domain = "ip",
-	$prio="00",
-	$notarule=false
- ) 
- {
+	$description = "",
+	$domain      = "ip",
+	$prio        = "00",
+	$notarule    = false
+) 
+{
 	file { "/etc/ferm/rules.d/${prio}_${name}":
 		ensure  => present,
 		owner   => 'root',
