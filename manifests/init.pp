@@ -1,9 +1,18 @@
 class ferm {
 
 	package {
-		ferm:		ensure => installed;
-		iptables:	ensure => installed;
-		iptables-ipv6:	ensure => installed;
+
+        case $::osfamily {
+		    'RedHat': {
+                ferm:		ensure => installed;
+                iptables:	ensure => installed;
+                iptables-ipv6:	ensure => installed;
+            }
+		    default: {
+                ferm:		ensure => installed;
+                iptables:	ensure => installed;
+		    }
+        }
 	}
 
 	file {
