@@ -1,18 +1,18 @@
 ##
 ## THIS FILE IS UNDER PUPPET CONTROL. DON'T EDIT IT HERE.
-## <%= description %>
+## <%= @description %>
 ##
 
-domain (<%= domain %>) {
-    table <%= table %> {
-        chain <%= chain %> {
-        <% if host != false %>saddr <%= host %>{<% end -%>
+domain (<%= @domain %>) {
+    table <%= @table %> {
+        chain <%= @chain %> {
+        <% if @host != false %>saddr <%= @host %>{<% end -%>
 
-        <% rules.each do |rule| %>
+        <% [@rules].flatten.each do |rule| %>
             <%= rule %>;
         <% end -%>
 
-        <% if host != false %>}<% end -%>
+        <% if @host != false %>}<% end -%>
         }
     }
 }

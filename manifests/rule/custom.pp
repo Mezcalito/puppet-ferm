@@ -6,9 +6,9 @@ define ferm::rule::custom
 {
   file { "/etc/ferm/rules.d/${prio}_${name}":
     ensure  => present,
-    owner   => root,
-    group   => root,
-    mode    => 0400,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0400',
     content => $content,
     notify  => Exec['refresh_ferm'];
   }
