@@ -27,7 +27,7 @@ class ferm {
 			ensure  => directory,
 			owner   => root,
 			group   => root,
-			mode    => 0755;
+			mode    => '0755';
 		"/etc/ferm/conf.d":
 			ensure  => directory,
 			owner   => root,
@@ -50,14 +50,14 @@ class ferm {
 			owner   => root,
 			group   => root,
 			require => Package["ferm"],
-			mode    => 0400,
+			mode    => '0400',
 			notify  => Exec["refresh_ferm"];
 		"/etc/ferm/conf.d/defs.conf":
 			content => template("ferm/defs.conf.erb"),
 			owner   => root,
 			group   => root,
 			require => Package["ferm"],
-			mode    => 0400,
+			mode    => '0400',
 			notify  => Exec["refresh_ferm"];
 		}
     
