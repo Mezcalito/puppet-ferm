@@ -10,6 +10,6 @@
 		group   => root,
 		mode    => '0400',
 		content => template("ferm/hook.erb"),
-		notify  => Exec["refresh_ferm"];
+		notify  => Service['ferm'];
 	}
 }

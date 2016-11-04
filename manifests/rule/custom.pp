@@ -10,6 +10,6 @@ define ferm::rule::custom
     group   => root,
     mode    => '0400',
     content => $content,
-    notify  => Exec['refresh_ferm'];
+    notify  => Service['ferm'];
   }
 }

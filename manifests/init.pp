@@ -12,7 +12,7 @@ class ferm {
 			group   => root,
 			force   => true,
 			recurse => true,
-			notify  => Exec["refresh_ferm"],
+			notify  => Service['ferm']
 			require => Package["ferm"];
 		"/etc/ferm/macros.d":
 			ensure => directory,
@@ -21,7 +21,7 @@ class ferm {
 			group   => root,
 			force   => true,
 			recurse => true,
-			notify  => Exec["refresh_ferm"],
+			notify  => Service['ferm']
 			require => Package["ferm"];
 		"/etc/ferm":
 			ensure  => directory,
@@ -38,7 +38,7 @@ class ferm {
 			owner   => root,
 			group   => root,
 			require => Package["ferm"],
-			notify  => Exec["refresh_ferm"];
+			notify  => Service['ferm']
 		"/etc/ferm/ferm.conf":
 			source => [
 			"puppet:///modules/site_ferm/${::fqdn}/ferm.conf",
@@ -51,21 +51,23 @@ class ferm {
 			group   => root,
 			require => Package["ferm"],
 			mode    => '0400',
-			notify  => Exec["refresh_ferm"];
+			notify  => Service['ferm']
 		"/etc/ferm/conf.d/defs.conf":
 			content => template("ferm/defs.conf.erb"),
 			owner   => root,
 			group   => root,
 			require => Package["ferm"],
 			mode    => '0400',
-			notify  => Exec["refresh_ferm"];
+			notify  => Service['ferm']
 		}
     
-	exec { "refresh_ferm":
-		command => "/etc/init.d/ferm restart",
-		require  => Package["ferm"],
-		refreshonly => true
-	}
+    service { 'ferm':
+        ensure      => 'running',
+        enable      => true,
+        hasrestart  => true,
+        hasstatus   => false,
+        require     => Package['ferm']
+    }
 }
 # vim:set et:
 # vim:set sts=4 ts=4:

@@ -11,6 +11,6 @@
 		group   => root,
 		mode    => '0400',
 		content => template("ferm/ferm-macro.erb"),
-		notify  => Exec["refresh_ferm"];
+		notify  => Service['ferm'];
 	}
 }

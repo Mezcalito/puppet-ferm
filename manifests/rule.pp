@@ -16,6 +16,6 @@
 		group   => root,
 		mode    => '0400',
 		content => template("ferm/ferm-rule.erb"),
-		notify  => Exec["refresh_ferm"];
+		notify  => Service['ferm'];
 	}
 }
