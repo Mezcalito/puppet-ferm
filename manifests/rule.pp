@@ -10,7 +10,7 @@
 	$notarule=false
  ) 
  {
-	file { "/etc/ferm/rules.d/${prio}_${name}":
+	file { "${ferm::ferm_dir}/rules.d/${prio}_${name}":
 		ensure  => present,
 		owner   => root,
 		group   => root,

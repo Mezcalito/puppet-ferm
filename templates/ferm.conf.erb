@@ -4,7 +4,7 @@
 
 # -*- shell-script -*-
 
-@include 'conf.d/';
+@include '<%= @ferm_dir %>/conf.d/';
 
 domain (ip ip6) {
     table filter {
@@ -41,7 +41,7 @@ domain (ip ip6) {
     }
 }
 
-@include 'rules.d/';
-@include 'macros.d/';
+@include '<%= @ferm_dir %>/rules.d/';
+@include '<%= @ferm_dir %>/macros.d/';
 
 # vim:set et:

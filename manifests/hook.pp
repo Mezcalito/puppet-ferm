@@ -4,7 +4,7 @@
  ) 
  {
    
-	file { "/etc/ferm/conf.d/hook_${name}":
+	file { "${ferm::ferm_dir}/conf.d/hook_${name}":
 		ensure  => present,
 		owner   => root,
 		group   => root,

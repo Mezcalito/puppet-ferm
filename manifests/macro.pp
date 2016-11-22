@@ -5,7 +5,7 @@
     $prio="00"
  ) 
  {
-	file { "/etc/ferm/macros.d/${prio}_${name}":
+	file { "${ferm::ferm_dir}/macros.d/${prio}_${name}":
 		ensure  => present,
 		owner   => root,
 		group   => root,

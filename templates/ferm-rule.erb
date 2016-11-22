@@ -6,7 +6,7 @@
 domain (<%= @domain %>) {
     table <%= @table %> {
         chain <%= @chain %> {
-            <% if @host != false %>saddr (<% if (@host.is_a? String) %><%= @host %><% elsif (@host.is_a? Array) -%><% @host.each do |ns| %><%= ns %> <% end -%><% end -%>) {<% end -%>
+            <% if @host %>saddr (<% if (@host.is_a? String) %><%= @host %><% elsif (@host.is_a? Array) -%><% @host.each do |ns| %><%= ns %> <% end -%><% end -%>) {<% end -%>
 <% if (defined? @rules) %><% if (@rules.is_a? String) %>
                 <%= @rules %>;
 <% elsif (@rules.is_a? Array) -%>
@@ -14,7 +14,7 @@ domain (<%= @domain %>) {
 <% end -%>
 <% end -%>
 <% end -%>
-            <% if @host != false %>}<% end -%>
+            <% if @host %>}<% end -%>
 
         }
     }
