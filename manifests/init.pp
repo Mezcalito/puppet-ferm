@@ -1,4 +1,11 @@
-class ferm inherits ferm::params {
+class ferm (
+    $conf_source = undef
+) inherits ferm::params {
+        if $conf_source {
+            $conf_template = undef
+        } else {
+            $conf_template = 'ferm/ferm.conf.erb'
+        }
 
 	package {
 		ferm: ensure => installed;
@@ -26,7 +33,8 @@ class ferm inherits ferm::params {
 			ensure  => directory,
 			require => Package["ferm"];
 		"$ferm_config":
-			content => template('ferm/ferm.conf.erb'),
+			content => template($conf_template),
+			source  => $conf_source,
 			require => Package["ferm"],
 			mode    => '0400',
 			notify  => Service['ferm'];
