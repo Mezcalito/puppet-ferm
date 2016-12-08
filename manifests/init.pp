@@ -4,7 +4,7 @@ class ferm (
         if $conf_source {
             $conf_template = undef
         } else {
-            $conf_template = 'ferm/ferm.conf.erb'
+            $conf_template = template('ferm/ferm.conf.erb')
         }
 
 	package {
@@ -33,7 +33,7 @@ class ferm (
 			ensure  => directory,
 			require => Package["ferm"];
 		"$ferm_config":
-			content => template($conf_template),
+			content => $conf_template,
 			source  => $conf_source,
 			require => Package["ferm"],
 			mode    => '0400',
