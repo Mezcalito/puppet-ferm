@@ -6,16 +6,21 @@
 domain (<%= @domain %>) {
     table <%= @table %> {
         chain <%= @chain %> {
-            <% if @host %>saddr (<% if (@host.is_a? String) %><%= @host %><% elsif (@host.is_a? Array) -%><% @host.each do |ns| %><%= ns %> <% end -%><% end -%>) {<% end -%>
-<% if (defined? @rules) %><% if (@rules.is_a? String) %>
+<% if @host and not (@host.is_a? Array and @host.empty?) -%>
+            saddr (<% if (@host.is_a? String) -%><%= @host -%><% elsif (@host.is_a? Array) -%><%= @host.join(' ') -%><% end -%>) {
+<% end -%>
+<% if (defined? @rules) -%>
+<% if (@rules.is_a? String) -%>
                 <%= @rules %>;
 <% elsif (@rules.is_a? Array) -%>
-<% @rules.each do |ns| %>                <%= ns %>;
+<% @rules.each do |ns| -%>
+                <%= ns %>;
 <% end -%>
 <% end -%>
 <% end -%>
-            <% if @host %>}<% end -%>
-
+<% if @host and not (@host.is_a? Array and @host.empty?) -%>
+            }
+<% end -%>
         }
     }
 }
