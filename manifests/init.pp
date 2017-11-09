@@ -38,7 +38,7 @@ class ferm (
     content  => template("ferm/ferm.conf.erb"),
     owner   => root,
     group   => root,
-    mode    => 0400,
+    mode    => '0400',
     require => Package["ferm"],
     notify  => Exec["refresh_ferm"],
 	}
