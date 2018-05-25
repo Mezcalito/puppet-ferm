@@ -1,0 +1,67 @@
+---
+stages:
+  - syntax
+  - unit
+
+cache:
+  paths:
+    - vendor/bundle
+
+before_script:
+  - apt-get update -y && apt-get -qq -o=dpkg::use-pty=0 install ruby bundler      
+  - bundle -v
+  - rm Gemfile.lock || true
+  - gem update --system
+  - gem update bundler
+  - gem --version
+  - bundle -v
+  - bundle install --without system_tests --path vendor/bundle --jobs $(nproc)
+
+lint validate syntax metadata_lint-Debian jessie-Puppet ~> 4.8:
+  stage: syntax
+  image: debian:jessie
+  script:
+    - bundle exec rake lint validate syntax metadata_lint
+  variables:
+    PUPPET_GEM_VERSION: '~> 4.8'
+
+rubocop-Debian jessie-Puppet ~> 4.8:
+  stage: syntax
+  image: debian:jessie
+  script:
+    - bundle exec rake rubocop
+  variables:
+    PUPPET_GEM_VERSION: '~> 4.8'
+
+spec-Debian jessie-Puppet ~> 4.8:
+  stage: unit
+  image: debian:jessie
+  script:
+    - bundle exec rake spec
+  variables:
+    PUPPET_GEM_VERSION: '~> 4.8'
+
+syntax lint metadata_lint validate-Debian stretch-Puppet ~> 4.8:
+  stage: syntax
+  image: debian:stretch
+  script:
+    - bundle exec rake syntax lint metadata_lint validate
+  variables:
+    PUPPET_GEM_VERSION: '~> 4.8'
+
+rubocop-Debian stretch-Puppet ~> 4.8:
+  stage: syntax
+  image: debian:stretch
+  script:
+    - bundle exec rake rubocop
+  variables:
+    PUPPET_GEM_VERSION: '~> 4.8'
+
+spec-Debian stretch-Puppet ~> 4.8:
+  stage: unit
+  image: debian:stretch
+  script:
+    - bundle exec rake spec
+  variables:
+    PUPPET_GEM_VERSION: '~> 4.8'
+
