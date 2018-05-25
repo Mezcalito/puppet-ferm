@@ -8,8 +8,8 @@ define ferm::hook(
     owner   => root,
     group   => root,
     mode    => '0400',
-    content => template("ferm/hook.erb"),
-    notify  => Exec["refresh_ferm"],
+    content => template('ferm/hook.erb'),
+    notify  => Exec['refresh_ferm'],
   }
 
 }
