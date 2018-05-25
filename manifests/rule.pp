@@ -1,5 +1,5 @@
 define ferm::rule(
-	Array[String] $rules,
+  Array[String] $rules,
   Optional[String] $host = undef,
   Optional[String] $interface = undef,
   Optional[String] $daddr = undef,
