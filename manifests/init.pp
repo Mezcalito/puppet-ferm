@@ -1,7 +1,7 @@
 class ferm (
-  $default_allow_ssh = true,
-  $cache = true,
-  $fast = true,
+  Boolean $default_allow_ssh = true,
+  Boolean $cache = true,
+  Boolean $fast = true,
 ){
   package { 'ferm':
     ensure => installed,
