@@ -42,7 +42,7 @@ To add a hook to the ferm conf.d directory.
 
 ```puppet
 ferm::hook { 'conntrack_ftp':
-  description => 'Module nf_conntrack_ftp pour proftpd',
+  description  => 'Module nf_conntrack_ftp pour proftpd',
   content_hook => 'modprobe nf_conntrack_ftp'
 }
 ```
@@ -51,7 +51,7 @@ ferm::hook { 'conntrack_ftp':
 
 ### Class: `ferm`
 
-`ferm` The ferm class performs all steps needed to the use of ferm such as package installation and configuration. Specific rules can be added later with ferm::rule or specific classes.
+ The ferm class performs all steps needed to the use of ferm such as package installation and configuration. Specific rules can be added later with ferm::rule or specific classes.
 
 **Parameters within `ferm`**:
 
@@ -66,7 +66,6 @@ Cache the output of ferm --lines in /var/cache/ferm?
 #### `fast`
 
 Enable fast mode: ferm generates an iptables-save(8) file, and installs it with iptables-restore(8). This is much faster, because ferm calls iptables(8) once for every rule by default.
-Fast mode is enabled by default since ferm 2.0, deprecating this option.
 
 ### Defined type: `ferm::rule`
 
@@ -91,7 +90,7 @@ Specifies which netfilter table this rule will be inserted to: "filter" (default
 
 #### `chain`
 
-Specifies the netfilter chain (within the current table) this rule will be inserted to. Common predefined chain names are "INPUT", "OUTPUT", "FORWARD","PREROUTING", "POSTROUTING", depending on the table. See the netfilter documentation for details. If you specify a non-existing chain here, ferm will add the rule to a custom chain with that name.
+Specifies the netfilter chain (within the current table) this rule will be inserted to. Common predefined chain names are "INPUT", "OUTPUT", "FORWARD","PREROUTING", "POSTROUTING", depending on the table. If you specify a non-existing chain here, ferm will add the rule to a custom chain with that name.
 
 #### `description`
 
