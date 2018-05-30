@@ -44,7 +44,8 @@ To add a hook to the ferm conf.d directory.
 ferm::hook { 'conntrack_ftp':
   description => 'Module nf_conntrack_ftp pour proftpd',
   content_hook => 'modprobe nf_conntrack_ftp'
-}```
+}
+```
 
 ## Reference
 
