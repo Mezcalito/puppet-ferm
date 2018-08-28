@@ -1,6 +1,7 @@
 define ferm::hook(
   $description = undef,
-  $content_hook = undef
+  $content_hook = undef,
+  $when_hook = 'pre',
 ) {
 
   file { "/etc/ferm/conf.d/hook_${name}":
