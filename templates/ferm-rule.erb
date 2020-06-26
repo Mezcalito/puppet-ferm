@@ -3,14 +3,16 @@
 ## <%= @description %>
 ##
 
-table <%= @table %> {
-	chain <%= @chain %> {
-<%if @host || @interface || @daddr -%>
-		<% if @interface %>interface (<%= @interface %>)<% end %> <% if @host %>saddr (<%= @host %>)<% end %> <% if @daddr %>daddr (<%= @daddr %>)<% end %> {
-<% end -%>
-<% @rules.each do |rule| %>			<%= rule %>;
-<% end -%>
-		<% if @host || @interface || @daddr %>}<% end -%>
+domain <%= @domain %> {
+	table <%= @table %> {
+		chain <%= @chain %> {
+	<%if @host || @interface || @daddr -%>
+			<% if @interface %>interface (<%= @interface %>)<% end %> <% if @host %>saddr (<%= @host %>)<% end %> <% if @daddr %>daddr (<%= @daddr %>)<% end %> {
+	<% end -%>
+	<% @rules.each do |rule| %>			<%= rule %>;
+	<% end -%>
+			<% if @host || @interface || @daddr %>}<% end -%>
 
+		}
 	}
 }

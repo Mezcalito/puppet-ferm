@@ -3,6 +3,7 @@ define ferm::rule(
   Optional[String] $host = undef,
   Optional[String] $interface = undef,
   Optional[String] $daddr = undef,
+  Enum['ip', 'ip6', 'ip ip6'] $domain = 'ip',
   String $table = 'filter',
   String $chain = 'INPUT',
   String $description = '',
