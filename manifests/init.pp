@@ -16,6 +16,16 @@ class ferm (
     notify  => Exec['refresh_ferm'],
     require => Package['ferm'],
   }
+  file { '/etc/ferm/rules-6.d':
+    ensure  => directory,
+    purge   => true,
+    owner   => root,
+    group   => root,
+    force   => true,
+    recurse => true,
+    notify  => Exec['refresh_ferm'],
+    require => Package['ferm'],
+  }
   file { '/etc/ferm/conf.d':
     ensure  => directory,
     owner   => root,
