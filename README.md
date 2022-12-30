@@ -105,6 +105,8 @@ ferm can be installed and used on:
 
 * Debian Jessie
 * Debian Stretch
+* Debian Buster
+* Debian Bullseye
 
 Licensing
 =========
